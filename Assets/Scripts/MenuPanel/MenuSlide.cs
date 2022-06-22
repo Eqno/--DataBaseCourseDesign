@@ -8,20 +8,20 @@ public class MenuSlide : MonoBehaviour
 
     private bool mouseButton0;
     private Vector3 mousePosition;
-    private int RightPoint, criticalPoint;
+    private int rightPoint, criticalPoint;
     private RectTransform panelTransform;
     void Start()
     {
         slideDirection = true;
-        RightPoint = Screen.width;
-        criticalPoint = RightPoint / 2;
+        rightPoint = Screen.width;
+        criticalPoint = rightPoint / 2;
         mouseButton0 = returnButton = false;
         mousePosition = new Vector3(0, 0, 0);
         panelTransform = GetComponent<RectTransform>();
     }
     void Update()
     {
-        if (panelTransform.anchoredPosition.x == RightPoint)
+        if (panelTransform.anchoredPosition.x == rightPoint)
             return;
         if (Input.GetMouseButton(0))
         {
@@ -35,7 +35,7 @@ public class MenuSlide : MonoBehaviour
                     panelTransform.anchoredPosition.x
                     + Input.mousePosition.x
                     - mousePosition.x
-                    , 0, RightPoint
+                    , 0, rightPoint
                 ), 0
             );
             mousePosition = Input.mousePosition;
@@ -53,13 +53,13 @@ public class MenuSlide : MonoBehaviour
                 returnButton = false;
                 slideDirection = true;
             }
-            if (slideDirection && panelTransform.anchoredPosition.x < RightPoint)
+            if (slideDirection && panelTransform.anchoredPosition.x < rightPoint)
             {   
                 panelTransform.anchoredPosition = new Vector2(
                     LimitValue(
                         panelTransform.anchoredPosition.x
                         + SlideStep * Time.deltaTime,
-                        0, RightPoint
+                        0, rightPoint
                     ), 0
                 );
             }
@@ -69,7 +69,7 @@ public class MenuSlide : MonoBehaviour
                     LimitValue(
                         panelTransform.anchoredPosition.x
                         - SlideStep * Time.deltaTime,
-                        0, RightPoint
+                        0, rightPoint
                     ), 0
                 );
             }

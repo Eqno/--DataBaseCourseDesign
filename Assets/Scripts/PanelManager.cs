@@ -10,10 +10,6 @@ public class PanelManager : MonoBehaviour
         Dialog = GameObject.Find("弹窗");
         Dialog.SetActive(false);
     }
-    public void StorePanelToWelcomePanel()
-    {
-        
-    }
     public void StorePanelToMenuPanel()
     {
         MenuSlide.slideDirection = false;
@@ -31,6 +27,21 @@ public class PanelManager : MonoBehaviour
     public void OrderPanelToMenuPanel()
     {
         OrderSlide.returnButton = true;
+    }
+    public void SwitchToStorePanel()
+    {
+        InnerSlide.nowAtPanel = 1;
+        InnerSlide.switchButton = true;
+    }
+    public void SwitchToMyPanel()
+    {
+        InnerSlide.nowAtPanel = 2;
+        InnerSlide.switchButton = true;
+    }
+    public void SwitchToBalancePanel()
+    {
+        InnerSlide.nowAtPanel = 3;
+        InnerSlide.switchButton = true;
     }
 
     

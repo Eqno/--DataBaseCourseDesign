@@ -7,22 +7,55 @@ using System.Data.SqlClient;
 
 public class SqlCache : MonoBehaviour
 {
-    void Start()
+    private static SqlConnection SqlConnection;
+    static SqlCache()
     {
-        
+        SqlConnection = new SqlConnection(
+            "Data Source=localhost;database=快餐订购系统;Integrated Security=True;User Instance=False;"
+        );
+        Debug.Log("成功链接数据库");
     }
-    void Update()
+    public static void OpenSql()
     {
-        
+        if (SqlConnection.State == System.Data.ConnectionState.Closed)
+        {
+            SqlConnection.Open();
+            Debug.Log("成功打开数据库");
+        }
     }
-    //数据库连接，所有数据库的操作都通过个成员变量操作。
-    // static readonly private SqlConnection SqlConnection;
+    public static void CloseSql()
+    {
+        if (SqlConnection.State == System.Data.ConnectionState.Open)
+        {   
+            SqlConnection.Close();
+            Debug.Log("成功关闭数据库");
+        }
+    }
+    public static bool QuaryAccount(string accountName, string password = null)
+    {
+        return true;
+        // OpenSql();
+        // bool isMatch = false;
 
-    // //静态构造函数初始化数据库连接,在使用任何静态成员前自动调用
-    // static SqlCache()
-    // { 
-    //     //视图->服务器资源管理器->数据连接->数据库右键->属性->连接->连接字符串
-    //     const string constr = "";
-    //     SqlConnection = new SqlConnection(constr);
-    // }
+        // StringBuilder commandStr = new StringBuilder();
+        // commandStr.Append(" Select * From Account");
+        // commandStr.Append(" Where AccountName = '" + accountName + "'");
+
+        // if (!string.IsNullOrEmpty(password))               //加了密码就是检测帐号密码同时匹配
+        //     commandStr.Append(" And Password = '" + password + "'");
+
+        // try
+        // {
+        //     //执行命令添加到sqlCommand，执行并读取结果
+        //     SqlCommand sqlCommand = new SqlCommand(commandStr.ToString(), SqlConnection);
+        //     SqlDataReader reader = sqlCommand.ExecuteReader();
+        //     if (reader.Read())              //如果有查到返回true
+        //         isMatch = true;
+        //     MyApplication.Log("查询用户存在、或账户密码匹配成功");
+        // }
+        // catch (Exception e) { MyApplication.Log("查询用户存在 失败了啊 " + e.ToString()); }
+        // finally { CloseSql(); }         //关闭数据连接
+
+        // return isMatch;
+    }
 }

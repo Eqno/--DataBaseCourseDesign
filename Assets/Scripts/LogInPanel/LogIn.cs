@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,6 +74,11 @@ public class LogIn : MonoBehaviour
         }
         return true;
     }
+    IEnumerator QuitApp()
+    {
+        yield return new WaitForSeconds(1);
+        Application.Quit();
+    }
     public void Return()
     {
         if (RepeatTip.activeInHierarchy == false)
@@ -80,6 +86,7 @@ public class LogIn : MonoBehaviour
             WelcomeSlide.slideDirection = false;
             GameObject.Find("欢迎界面").GetComponent<RectTransform>()
                 .anchoredPosition = new Vector2(0, Screen.height - 1);
+            StartCoroutine(QuitApp());
         }
         else
         {

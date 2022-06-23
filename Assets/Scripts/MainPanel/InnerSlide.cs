@@ -11,7 +11,6 @@ public class InnerSlide : MonoBehaviour
     public static bool switchButton, slideEnable, logInEnable;
 
     private bool mouseButton0;
-    private float barRadio = 3;
     private Vector3 mousePosition;
     private int borderPoint, criticalPoint;
     private RectTransform barRecTran, storeRecTran, myRecTran, balanceRecTran;
@@ -115,7 +114,7 @@ public class InnerSlide : MonoBehaviour
     private void UpdateOtherPanelPositon()
     {
         barRecTran.anchoredPosition = new Vector2(
-            -myRecTran.anchoredPosition.x / barRadio,
+            -myRecTran.anchoredPosition.x / borderPoint * SlideBar.GetComponent<RectTransform>().sizeDelta.x,
             barRecTran.anchoredPosition.y
         );
         storeRecTran.anchoredPosition = myRecTran.anchoredPosition - new Vector2(borderPoint, 0);

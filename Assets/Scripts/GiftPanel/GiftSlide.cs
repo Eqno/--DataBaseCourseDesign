@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OrderSlide : MonoBehaviour
+public class GiftSlide : MonoBehaviour
 {
     public static bool slideDirection, returnButton, slideEnable;  // right->true, left->false
 
@@ -18,7 +18,7 @@ public class OrderSlide : MonoBehaviour
     {
         SlideManager.SlideRight(ref slideDirection, panelTransform,
             ref mouseButton0, ref returnButton, ref mousePosition,
-            ref MenuSlide.slideEnable, ref slideEnable);
+            ref OrderSlide.slideEnable, ref slideEnable);
     }
     private float LimitValue(float value, float minv, float maxv)
     { return value < minv ? minv : value > maxv ? maxv : value; }

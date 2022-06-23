@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6438496050350806411}
   - component: {fileID: 6438496050350806410}
   - component: {fileID: 6438496050350806409}
+  - component: {fileID: 4416283942701390174}
   m_Layer: 5
   m_Name: StoreItem
   m_TagString: Untagged
@@ -122,9 +123,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5909489983599260195, guid: 86117d1f107d7654ea178aecf95d75b2, type: 3}
-        m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
-        m_MethodName: StorePanelToMenuPanel
+      - m_Target: {fileID: 4416283942701390174}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: ShowMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -134,6 +135,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &4416283942701390174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438496050350806415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddec303aa8ddb14aa80a0cf3aecca26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuItem: {fileID: 6024177759073511799, guid: 085e75556d61ad1449ae32f2f9a2ef33, type: 3}
 --- !u!1 &6438496050630023764
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -200, y: 0}
+  m_AnchoredPosition: {x: -250, y: 0}
   m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6438496050630023767
@@ -212,7 +226,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8425\u4E1A\u65F6\u95F4\uFF1A\n\u65E99\u70B9\u81F3\u665A10\u70B9"
+  m_Text: "\u8425\u4E1A\u65F6\u95F4\uFF1A\n\u5468\u4E00\u5230\u5468\u65E50\u70B9\u81F30\u70B9"
 --- !u!1 &6438496050857161638
 GameObject:
   m_ObjectHideFlags: 0

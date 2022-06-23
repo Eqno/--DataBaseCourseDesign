@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PanelManager : MonoBehaviour
 {
@@ -10,24 +11,43 @@ public class PanelManager : MonoBehaviour
         Dialog = GameObject.Find("弹窗");
         Dialog.SetActive(false);
     }
-    public void StorePanelToMenuPanel()
+    public static void StorePanelToMenuPanel()
     {
-        MenuSlide.slideDirection = false;
-        GameObject.Find("菜单界面").GetComponent<RectTransform>().anchoredPosition = new Vector2(Screen.width - 1, 0);
+        MenuSlide.slideDirection = InnerSlide.slideEnable = false;
+        GameObject.Find("菜单界面").GetComponent<RectTransform>()
+            .anchoredPosition = new Vector2(Screen.width - 1, 0);
     }
     public void MenuPanelToStorePanel()
+    { MenuSlide.returnButton = InnerSlide.slideEnable = true; }
+    public static void MenuPanelToOrderPanel()
     {
-        MenuSlide.returnButton = true;
-    }
-    public void MenuPanelToOrderPanel()
-    {
-        OrderSlide.slideDirection = false;
-        GameObject.Find("订单界面").GetComponent<RectTransform>().anchoredPosition = new Vector2(Screen.width - 1, 0);
+        OrderSlide.slideDirection = MenuSlide.slideEnable = false;
+        GameObject.Find("订单界面").GetComponent<RectTransform>()
+            .anchoredPosition = new Vector2(Screen.width - 1, 0);
     }
     public void OrderPanelToMenuPanel()
+    { OrderSlide.returnButton = MenuSlide.slideEnable = true; }
+    public static void OrderPanelToGitftPanel()
     {
-        OrderSlide.returnButton = true;
+        GiftSlide.slideDirection = OrderSlide.slideEnable = false;
+        GameObject.Find("赠品界面").GetComponent<RectTransform>()
+            .anchoredPosition = new Vector2(Screen.width - 1, 0);
     }
+    public static void GiftPanelToMyPanel()
+    {
+        GiftSlide.returnButton = OrderSlide.slideEnable = true;
+        OrderSlide.returnButton = MenuSlide.slideEnable = true;
+        MenuSlide.returnButton = InnerSlide.slideEnable = true;
+    }
+    public static void MyPanelToReceivePanel()
+    {
+        ReceiveSlide.slideEnable = true;
+        ReceiveSlide.slideDirection = InnerSlide.slideEnable = false;
+        GameObject.Find("收货界面").GetComponent<RectTransform>()
+            .anchoredPosition = new Vector2(Screen.width - 1, 0);
+    }
+    public void ReceivePanelToMyPanel()
+    { ReceiveSlide.returnButton = InnerSlide.slideEnable = true; }
     public void SwitchToStorePanel()
     {
         InnerSlide.nowAtPanel = 1;
@@ -43,7 +63,6 @@ public class PanelManager : MonoBehaviour
         InnerSlide.nowAtPanel = 3;
         InnerSlide.switchButton = true;
     }
-
     
     public static int DialogTime = 2;
     public static GameObject Dialog;

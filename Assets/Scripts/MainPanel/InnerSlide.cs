@@ -8,7 +8,7 @@ public class InnerSlide : MonoBehaviour
     public GameObject SlideBar, StorePanel, MyPanel, BalancePanel;
     
     public static int nowAtPanel;
-    public static bool switchButton;
+    public static bool switchButton, slideEnable, logInEnable;
 
     private bool mouseButton0;
     private float barRadio = 3;
@@ -17,21 +17,21 @@ public class InnerSlide : MonoBehaviour
     private RectTransform barRecTran, storeRecTran, myRecTran, balanceRecTran;
     void Start()
     {
-        nowAtPanel = 2;
+        nowAtPanel = 2;  // 1->StorePanel, 2->MyPanel, 3->BalancePanel
         borderPoint = Screen.width;
         criticalPoint = borderPoint / 2;
-        mouseButton0 = switchButton = false;
         mousePosition = new Vector3(0, 0, 0);
         myRecTran = MyPanel.GetComponent<RectTransform>();
         barRecTran = SlideBar.GetComponent<RectTransform>();
         storeRecTran = StorePanel.GetComponent<RectTransform>();
         balanceRecTran = BalancePanel.GetComponent<RectTransform>();
+        mouseButton0 = switchButton = slideEnable = logInEnable = false;
 
         UpdateOtherPanelPositon();
     }
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (logInEnable && slideEnable && Input.GetMouseButton(0))
         {
             if (mouseButton0 == false)
             {

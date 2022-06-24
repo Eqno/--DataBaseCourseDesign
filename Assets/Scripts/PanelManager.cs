@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PanelManager : MonoBehaviour
 {
-    private void Start()
+    void Start()
     {
         Dialog = GameObject.Find("弹窗");
         Dialog.SetActive(false);
@@ -62,6 +62,18 @@ public class PanelManager : MonoBehaviour
     {
         InnerSlide.nowAtPanel = 3;
         InnerSlide.switchButton = true;
+    }
+    IEnumerator QuitApp()
+    {
+        yield return new WaitForSeconds(1);
+        Application.Quit();
+    }
+    public void CloseApp()
+    {
+        WelcomeSlide.slideEnable = WelcomeSlide.slideDirection = false;
+        GameObject.Find("欢迎界面").GetComponent<RectTransform>()
+            .anchoredPosition = new Vector2(0, Screen.height - 1);
+        StartCoroutine(QuitApp());
     }
     
     public static int DialogTime = 2;

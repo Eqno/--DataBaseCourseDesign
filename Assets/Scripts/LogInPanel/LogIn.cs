@@ -83,7 +83,7 @@ public class LogIn : MonoBehaviour
     {
         if (RepeatTip.activeInHierarchy == false)
         {
-            WelcomeSlide.slideDirection = false;
+            WelcomeSlide.slideEnable = WelcomeSlide.slideDirection = false;
             GameObject.Find("欢迎界面").GetComponent<RectTransform>()
                 .anchoredPosition = new Vector2(0, Screen.height - 1);
             StartCoroutine(QuitApp());

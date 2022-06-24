@@ -4,7 +4,7 @@ public class WelcomeSlide : MonoBehaviour
 {
     public int SlideStep = 5000;
 
-    public static bool slideDirection;  // up->true, down->false
+    public static bool slideDirection, slideEnable;  // up->true, down->false
 
     private bool mouseButton0;
     private Vector3 mousePosition;
@@ -12,6 +12,7 @@ public class WelcomeSlide : MonoBehaviour
     private RectTransform panelTransform;
     void Start()
     {
+        slideEnable = true;
         topPoint = Screen.height;
         criticalPoint = topPoint / 2;
         mousePosition = new Vector3(0, 0, 0);
@@ -22,7 +23,7 @@ public class WelcomeSlide : MonoBehaviour
     {
         if (panelTransform.anchoredPosition.y == topPoint)
             return;
-        if (Input.GetMouseButton(0))
+        if (slideEnable && Input.GetMouseButton(0))
         {
             if (mouseButton0 == false)
             {

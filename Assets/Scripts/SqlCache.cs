@@ -10,6 +10,7 @@ public class SqlCache : MonoBehaviour
 {
     private static int MAXORDERNUM = 1000;
     private static SqlDataReader reader;
+
     private static SqlConnection SqlConnection;
     static SqlCache()
     {
@@ -18,6 +19,7 @@ public class SqlCache : MonoBehaviour
         );
         Debug.Log("成功链接数据库");
     }
+    
     public static void OpenSql()
     {
         if (SqlConnection.State == System.Data.ConnectionState.Closed)
@@ -34,6 +36,7 @@ public class SqlCache : MonoBehaviour
             Debug.Log("成功关闭数据库");
         }
     }
+
     public static bool QuaryAccount(string username, string password)
     {
         OpenSql();
@@ -44,6 +47,8 @@ public class SqlCache : MonoBehaviour
         CloseSql();
         return res;
     }
+
+
     public static void CreateAccount(string username, string password)
     {
         OpenSql();
@@ -53,6 +58,7 @@ public class SqlCache : MonoBehaviour
         ).ExecuteReader().Read();
         CloseSql();
     }
+
     public static List<List<string>> ListStores()
     {
         OpenSql();
@@ -72,6 +78,7 @@ public class SqlCache : MonoBehaviour
         CloseSql();
         return res;
     }
+
     public static int QuaryBalance(string username, string password)
     {
         OpenSql();
@@ -84,6 +91,8 @@ public class SqlCache : MonoBehaviour
         CloseSql();
         return res;
     }
+
+
     public static List<List<string>> ListFoods(string store)
     {
         OpenSql();
@@ -102,6 +111,8 @@ public class SqlCache : MonoBehaviour
         CloseSql();
         return res;
     }
+
+
     public static int QuaryPrice(string store, string food)
     {
         OpenSql();
@@ -114,6 +125,8 @@ public class SqlCache : MonoBehaviour
         CloseSql();
         return res;
     }
+
+
     public static void UpdateBalance(string username, string password, int num)
     {
         OpenSql();
@@ -123,6 +136,7 @@ public class SqlCache : MonoBehaviour
         ).ExecuteReader().Read();
         CloseSql();
     }
+
     public static List<List<string>> ListGifts()
     {
         OpenSql();
@@ -141,6 +155,7 @@ public class SqlCache : MonoBehaviour
         CloseSql();
         return res;
     }
+
     public static void AddOrder(string username, string password, List<List<string>> order, string address)
     {
         OpenSql();
@@ -169,6 +184,8 @@ public class SqlCache : MonoBehaviour
             CloseSql();
         }
     }
+
+
     public static List<List<string>> ListOrders(string username, string password)
     {
         OpenSql();
@@ -187,6 +204,8 @@ public class SqlCache : MonoBehaviour
         CloseSql();
         return res;
     }
+
+
     public static List<List<string>> ListOrderItems(string username, string password, int num)
     {
         OpenSql();
@@ -206,6 +225,8 @@ public class SqlCache : MonoBehaviour
         CloseSql();
         return res;
     }
+
+
     public static void RemoveOrder(string username, string password, int num)
     {
         OpenSql();
@@ -214,9 +235,5 @@ public class SqlCache : MonoBehaviour
             SqlConnection
         ).ExecuteReader();
         CloseSql();
-    }
-    private static bool ExecuteCommand(string command)
-    {
-        return reader.Read();
     }
 }

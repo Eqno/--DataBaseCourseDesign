@@ -68,14 +68,13 @@ public class OrderManager : MonoBehaviour
     public void ConfirmOrder()
     {
         if (LogIn.balance < totPrice)
-            StartCoroutine(PanelManager.MakeDialog("余额不足！当前余额："+LogIn.balance.ToString()+"元"));
-        else
         {
-            LogIn.balance -= totPrice;
-            SqlCache.UpdateBalance(LogIn.usr, LogIn.pwd, LogIn.balance);
-            StartCoroutine(PanelManager.MakeDialog("支付成功！"));
-
+            StartCoroutine(PanelManager.MakeDialog("余额不足！当前余额："+LogIn.balance.ToString()+"元"));
+            return;
         }
+        LogIn.balance -= totPrice;
+        SqlCache.UpdateBalance(LogIn.usr, LogIn.pwd, LogIn.balance);
+        StartCoroutine(PanelManager.MakeDialog("支付成功！"));
         GameObject.Find("金额").GetComponent<Text>().text = LogIn.balance.ToString()+"元";
         
         Content = GameObject.Find("GiftContent");
